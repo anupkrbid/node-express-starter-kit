@@ -1,1 +1,1 @@
-export { default as pingRouter } from "./ping.router";
+export { default as v1Router } from "./v1-router";

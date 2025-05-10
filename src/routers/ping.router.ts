@@ -1,8 +1,8 @@
 import express, { Router } from "express";
 import { pingHandler } from "../controllers";
 
-const router: Router = express.Router();
+const pingRouter: Router = express.Router();
 
-router.get("/", pingHandler);
+pingRouter.get("/", pingHandler);
 
-export default router;
+export default pingRouter;
