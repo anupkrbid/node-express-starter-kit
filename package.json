@@ -2,13 +2,13 @@
   "name": "node-express-starter-kit",
   "version": "1.0.0",
   "description": "Node Express Starter Kit",
-  "main": "src/main.js",
+  "main": "src/server.js",
   "scripts": {
     "config:show": "tsc --showConfig",
     "debug": "tsc --watch --diagnostics",
-    "dev": "tsc --watch src/main.ts",
+    "dev": "tsx watch src/server.ts",
     "build": "tsc -p tsconfig.json",
-    "start": "tsx src/main.ts",
+    "start": "tsx src/server.ts",
     "start:alt": "npm run build && node --experimental",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
