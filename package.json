@@ -1,0 +1,42 @@
+{
+  "name": "node-express-starter-kit",
+  "version": "1.0.0",
+  "description": "Node Express Starter Kit",
+  "main": "src/main.js",
+  "scripts": {
+    "config:show": "tsc --showConfig",
+    "debug": "tsc --watch --diagnostics",
+    "dev": "tsc --watch src/main.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "tsx src/main.ts",
+    "start:alt": "npm run build && node --experimental",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anupkrbid/node-express-starter-kit.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "typescript"
+  ],
+  "author": "Anup Kumar Bid",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anupkrbid/node-express-starter-kit/issues"
+  },
+  "homepage": "https://github.com/anupkrbid/node-express-starter-kit#readme",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "zed": "^0.1.0"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^8.2.3",
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.15.17",
+    "typescript": "^5.8.3",
+    "tsx": "^4.19.4"
+  }
+}
