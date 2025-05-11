@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { AnyZodObject, ZodEffects, ZodError } from "zod";
 import { fromError } from "zod-validation-error";
+import { ErrorResponse } from "../utils";
 
 type RequestProperty = "body" | "params" | "query";
 
@@ -14,11 +15,7 @@ export const validateRequest = (
       next();
     } catch (err: unknown) {
       if (err instanceof ZodError) {
-        next({
-          status: 400,
-          message: fromError(err).toString(),
-          errors: err.errors,
-        });
+        next(new ErrorResponse(fromError(err).toString(), 422));
       } else {
         next(err);
       }

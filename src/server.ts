@@ -2,6 +2,7 @@ import express, { Express, NextFunction, Request, Response } from "express";
 
 import { serverConfig } from "./configs";
 import { v1Router } from "./routers";
+import { badRequestHandler, anyErrorHandler } from "./middlewares";
 
 const app: Express = express();
 
@@ -14,6 +15,9 @@ app.get("/", (req: Request, res: Response, next: NextFunction) => {
 });
 
 app.use("/api/v1", v1Router);
+
+app.use(badRequestHandler);
+app.use(anyErrorHandler);
 
 app.listen(serverConfig.APP_PORT, () => {
   console.log(`Server is running on port ${serverConfig.APP_PORT}`);
