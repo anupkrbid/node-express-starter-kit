@@ -30,13 +30,14 @@
   "dependencies": {
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
-    "zed": "^0.1.0"
+    "zod": "^3.24.4",
+    "zod-validation-error": "^3.4.1"
   },
   "devDependencies": {
     "@types/dotenv": "^8.2.3",
     "@types/express": "^5.0.1",
     "@types/node": "^22.15.17",
-    "typescript": "^5.8.3",
-    "tsx": "^4.19.4"
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
   }
 }
