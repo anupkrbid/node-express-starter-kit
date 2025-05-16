@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { AnyZodObject, ZodEffects, ZodError } from "zod";
 import { fromError } from "zod-validation-error";
-import { ErrorResponse } from "../utils";
+import { UnprocessableEntity } from "../utils/errors";
 
 type RequestProperty = "body" | "params" | "query";
 
@@ -15,7 +15,8 @@ export const validateRequest = (
       next();
     } catch (err: unknown) {
       if (err instanceof ZodError) {
-        next(new ErrorResponse(fromError(err).toString(), 422));
+        console.log(err);
+        next(new UnprocessableEntity(fromError(err).toString()));
       } else {
         next(err);
       }

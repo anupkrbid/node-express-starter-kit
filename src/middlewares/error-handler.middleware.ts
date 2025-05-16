@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import { ErrorResponse } from "../utils";
+import { BadRequest, isAppError } from "../utils/errors";
+import { StatusCodes } from "http-status-codes";
 
 /**
  * Middleware for handling 404 Bad Request errors
@@ -14,7 +15,7 @@ export const badRequestHandler = (
   res: Response,
   next: NextFunction
 ) => {
-  next(new ErrorResponse("Bad Request", 404));
+  next(new BadRequest("Bad Request"));
 };
 
 /**
@@ -30,19 +31,33 @@ export const badRequestHandler = (
  * @returns {Object} JSON response with error details
  */
 export const anyErrorHandler = (
-  err: ErrorResponse,
+  err: Error,
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  if (!err.status) {
-    console.log("Any Error Middleware:\n", err);
-  }
-  const status = err.status || 500;
-
-  res.status(status).json({
+  const errorRes: { success: false; message: string; error?: unknown } = {
     success: false,
     message: err.message,
-    error: err.error ? err.error : status === 500 ? err.stack : null,
-  });
+  };
+
+  if (isAppError(err)) {
+    if (!err.statusCode) {
+      console.log("Any Error Middleware:\n", err);
+    }
+
+    const statusCode = err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR;
+
+    if (err.error) {
+      errorRes["error"] = err.error;
+    } else if (statusCode === StatusCodes.INTERNAL_SERVER_ERROR) {
+      errorRes["error"] = err.stack;
+    }
+
+    res.status(statusCode).json(errorRes);
+  } else {
+    errorRes["error"] = err.stack;
+    console.log("Any Error Middleware:\n");
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(errorRes);
+  }
 };
