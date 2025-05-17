@@ -1,4 +1,6 @@
 import winston from "winston";
+import DailyRotateFile from "winston-daily-rotate-file";
+
 import { getCorrelationId } from "../helpers";
 
 export const logger = winston.createLogger({
@@ -18,6 +20,13 @@ export const logger = winston.createLogger({
   transports: [
     new winston.transports.File({ filename: "logs/error.log", level: "error" }),
     new winston.transports.File({ filename: "logs/combined.log" }),
+    new DailyRotateFile({
+      filename: "logs/%DATE%.log",
+      datePattern: "YYYY-MM-DD",
+      zippedArchive: true,
+      maxSize: "20m",
+      maxFiles: 6,
+    }),
   ],
 });
 
