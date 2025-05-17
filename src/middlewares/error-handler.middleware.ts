@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { BadRequest, isAppError } from "../utils/errors";
 import { StatusCodes } from "http-status-codes";
+import { logger } from "../configs";
 
 /**
  * Middleware for handling 404 Bad Request errors
@@ -42,9 +43,7 @@ export const anyErrorHandler = (
   };
 
   if (isAppError(err)) {
-    if (!err.statusCode) {
-      console.log("Any Error Middleware:\n", err);
-    }
+    logger.error("Any App Error Middleware", err);
 
     const statusCode = err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR;
 
@@ -57,7 +56,7 @@ export const anyErrorHandler = (
     res.status(statusCode).json(errorRes);
   } else {
     errorRes["error"] = err.stack;
-    console.log("Any Error Middleware:\n");
+    logger.error("Any Error Middleware", err.stack);
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(errorRes);
   }
 };
