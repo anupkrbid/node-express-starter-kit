@@ -1,7 +1,7 @@
 {
-  "name": "node-express-starter-kit",
+  "name": "node-express-typescript-starter-kit",
   "version": "1.0.0",
-  "description": "Node Express Starter Kit",
+  "description": "Node Express TypeScript Starter Kit",
   "main": "src/server.js",
   "scripts": {
     "config:show": "tsc --showConfig",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/anupkrbid/node-express-starter-kit.git"
+    "url": "git+https://github.com/anupkrbid/node-express-typescript-starter-kit.git"
   },
   "keywords": [
     "node",
@@ -24,9 +24,9 @@
   "author": "Anup Kumar Bid",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/anupkrbid/node-express-starter-kit/issues"
+    "url": "https://github.com/anupkrbid/node-express-typescript-starter-kit/issues"
   },
-  "homepage": "https://github.com/anupkrbid/node-express-starter-kit#readme",
+  "homepage": "https://github.com/anupkrbid/node-express-typescript-starter-kit#readme",
   "dependencies": {
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
@@ -34,6 +34,7 @@
     "uuid": "^11.1.0",
     "winston": "^3.17.0",
     "winston-daily-rotate-file": "^5.0.0",
+    "winston-transport": "^4.9.0",
     "zod": "^3.24.4",
     "zod-validation-error": "^3.4.1"
   },
