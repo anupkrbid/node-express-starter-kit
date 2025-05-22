@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 
 export type ServerConfig = {
+  // App Config
   NODE_ENV: string;
   APP_PORT: number;
 };

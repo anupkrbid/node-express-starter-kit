@@ -4,6 +4,7 @@ import { serverConfig, logger } from "./configs";
 import { v1Router } from "./routers";
 import { badRequestHandler, anyErrorHandler } from "./middlewares";
 import { attachCorrelationId } from "./middlewares/attach-correlation-id.middleware";
+import { pingHandler } from "./controllers";
 
 const app: Express = express();
 
@@ -17,6 +18,7 @@ app.get("/", (req: Request, res: Response, next: NextFunction) => {
   res.send("Node Express Starter Kit!");
 });
 
+app.use("/api/ping", pingHandler);
 app.use("/api/v1", v1Router);
 
 app.use(badRequestHandler);

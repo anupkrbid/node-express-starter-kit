@@ -1,2 +1,3 @@
-# node-express-starter-kit
-Node Express Starter Kit
+# node-express-typescript-starter-kit
+
+Node Express TypeScript Starter Kit
